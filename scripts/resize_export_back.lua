@@ -1,0 +1,6 @@
+app.command.FitScreen()
+app.command.SpriteSize()
+app.command.FitScreen()
+app.command.SaveFileCopyAs()
+app.undo()
+app.command.FitScreen()
