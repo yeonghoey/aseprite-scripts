@@ -2,17 +2,17 @@ SHELL = /bin/bash
 
 LIBDIR = lib
 LIB = $(wildcard $(LIBDIR)/*.lua)
-SRCDIR = scripts
+SRCDIR = src
 SRC = $(wildcard $(SRCDIR)/*.lua)
 
-RENDIR = rendered
-REN = $(SRC:$(SRCDIR)%.lua=$(RENDIR)%.lua)
+SCRIPTSDIR = scripts
+SCRIPTS = $(SRC:$(SRCDIR)%.lua=$(SCRIPTSDIR)%.lua)
 DSTDIR = $(HOME)/Library/Application\ Support/Aseprite/scripts
 DST = $(SRC:$(SRCDIR)%.lua=$(DSTDIR)%.lua)
 
 
 .PHONY: sync open
-.SECONDARY: $(REN)
+.SECONDARY: $(SCRIPTS)
 
 
 sync: $(DST)
@@ -20,8 +20,11 @@ sync: $(DST)
 open:
 	open $(DSTDIR)
 
-$(RENDIR)/%.lua: $(SRCDIR)/%.lua $(LIB) render.py
+$(SCRIPTSDIR)/%.lua: $(SRCDIR)/%.lua $(LIB) render.py $(SCRIPTSDIR)
 	python 'render.py' '$<' > '$@'
 
-$(DSTDIR)/%.lua: $(RENDIR)/%.lua
+$(SCRIPTSDIR):
+	mkdir -p 'scripts'
+
+$(DSTDIR)/%.lua: $(SCRIPTSDIR)/%.lua
 	cp '$<' '$@'
