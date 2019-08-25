@@ -6,8 +6,7 @@ SRCDIR = scripts
 SRC = $(wildcard $(SRCDIR)/*.lua)
 
 RENDIR = rendered
-REN = $(SRC:$(RENDIR)%.lua=$(RENDIR)%.lua)
-
+REN = $(SRC:$(SRCDIR)%.lua=$(RENDIR)%.lua)
 DSTDIR = $(HOME)/Library/Application\ Support/Aseprite/scripts
 DST = $(SRC:$(SRCDIR)%.lua=$(DSTDIR)%.lua)
 
