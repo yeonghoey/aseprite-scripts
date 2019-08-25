@@ -1,6 +1,8 @@
 SHELL = /bin/bash
 .PHONY: sync open
 
+LIBDIR = lib
+LIB = $(wildcard $(LIBDIR)/*.lua)
 SRCDIR = scripts
 SRC = $(wildcard $(SRCDIR)/*.lua)
 
@@ -12,5 +14,5 @@ sync: $(DST)
 open:
 	open $(DSTDIR)
 
-$(DSTDIR)/%.lua: $(SRCDIR)/%.lua
-	cp '$<' '$@'
+$(DSTDIR)/%.lua: $(SRCDIR)/%.lua $(LIB) render.py
+	python 'render.py' '$<' > '$@'
