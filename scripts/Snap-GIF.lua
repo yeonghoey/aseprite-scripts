@@ -1,3 +1,3 @@
--- include "lib/snap.lua"
+--#include "lib/snap.lua"
 
 snap("gif")

@@ -2,7 +2,7 @@
 -- Resize and export all the frames as png files which are named
 -- filename/yyyymmdd-HHMMSS-WWWxHHH-NNN.EXT, and then rollback the size.
 
-function snap(ext)
+function snap (ext)
   app.command.SpriteSize()
   local sprite = app.activeSprite
   local filename = sprite.filename
