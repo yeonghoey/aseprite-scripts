@@ -15,9 +15,9 @@ def render(src):
         path = stack[-1]
         with open(path) as f:
             for line in f:
-                yield line
                 path1 = parse_include(line)
                 if path1 is None:
+                    yield line
                     continue
                 if path1 in stack:
                     continue
